@@ -1,10 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { RouterProvider } from "./context/index";
+import { RouterProvider, AuthContextProvider } from "./context/index";
+import { firebase } from "./firebase/index";
 
 function App() {
-  return <RouterProvider />;
+  return (
+    <AuthContextProvider>
+      <RouterProvider />
+    </AuthContextProvider>
+  );
 }
 
 export default App;

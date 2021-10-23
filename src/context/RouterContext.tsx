@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { ROUTES } from "../constant";
-import { Home, NotFound, PageTwo } from "../pages";
+import { Home, NotFound, PageTwo, Login } from "../pages";
+import { useAuthContext } from "./AuthContext";
 
 export const RouterContext = React.createContext({});
 
 const routes = [
   { path: ROUTES.home, component: Home, exact: true },
   { path: ROUTES.pageTwo, component: PageTwo, exact: true },
+  { path: ROUTES.login, component: Login, exact: true },
 ];
 
 export const useShoppingCartContext = () => {
@@ -21,27 +23,27 @@ export const useShoppingCartContext = () => {
 };
 
 type ProtectedProps = {
+  path: string;
   component: any;
 };
 
-// const ProtectedRoute = ({ path, component: Component, ...props }) => {
-const ProtectedRoute = ({ component: Component, ...props }: ProtectedProps) => {
-  //   const { isAuth } = useAuthContext();
+const ProtectedRoute = ({
+  path,
+  component: Component,
+  ...props
+}: ProtectedProps) => {
+  const { isAuth } = useAuthContext();
 
-  //   if (path === ROUTES.login) {
-  //     if (isAuth) return <Redirect to={ROUTES.home} />;
-  //     return <Component {...props} />;
-  //   }
+  if (path === ROUTES.login) {
+    if (isAuth) return <Redirect to={ROUTES.home} />;
+    return <Component {...props} />;
+  }
 
-  //   if (isAuth) {
-  //     return (
-  //       <TableProvider>
-  return <Component {...props} />;
-  //       </TableProvider>
-  //     );
-  //   }
+  if (isAuth) {
+    return <Component {...props} />;
+  }
 
-  //   return <Redirect to={ROUTES.login} />;
+  return <Redirect to={ROUTES.login} />;
 };
 
 export const RouterProvider = () => {
