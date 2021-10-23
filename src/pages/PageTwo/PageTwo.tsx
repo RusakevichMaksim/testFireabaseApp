@@ -1,4 +1,5 @@
 import { useHistory } from "react-router";
+import { ROUTES } from "../../constant";
 
 export const PageTwo = () => {
   const history = useHistory();
@@ -8,7 +9,7 @@ export const PageTwo = () => {
       PageTwo
       <button
         onClick={() => {
-          history.push("/");
+          history.push(ROUTES.home);
         }}
       >
         go Home
