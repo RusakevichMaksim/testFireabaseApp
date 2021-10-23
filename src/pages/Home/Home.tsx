@@ -1,6 +1,7 @@
 import { useHistory } from "react-router";
 import { ROUTES } from "../../constant";
-//@ts-ignore-file
+import { auth } from "../../firebase/index";
+
 export const Home = () => {
   const history = useHistory();
   const buttonStyle = {
@@ -21,7 +22,12 @@ export const Home = () => {
       >
         pageTwo
       </button>
-      <button style={buttonStyle} onClick={() => {}}>
+      <button
+        style={buttonStyle}
+        onClick={() => {
+          auth.signOut();
+        }}
+      >
         Sing Out
       </button>
     </div>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { handleOnAuthStateChanged } from "../firebase";
+import { Box, CircularProgress } from "@material-ui/core";
 
 type ContextProps = {
   isAuth: any;
@@ -24,8 +25,21 @@ export function AuthContextProvider({ children }: AuthContextProps) {
   const [currentUset, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    handleOnAuthStateChanged();
+    handleOnAuthStateChanged(setCurrentUser);
   }, []);
+
+  if (currentUset === null) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <AuthContext.Provider
