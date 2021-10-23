@@ -27,20 +27,6 @@ export function AuthContextProvider({ children }: AuthContextProps) {
     handleOnAuthStateChanged();
   }, []);
 
-  if (!currentUset) {
-    return (
-      //   <Box
-      //     display="flex"
-      //     justifyContent="center"
-      //     alignItems="center"
-      //     height="100vh"
-      //   >
-      //     <CircularProgress />
-      //   </Box>
-      <div>User Not Found</div>
-    );
-  }
-
   return (
     <AuthContext.Provider
       value={{

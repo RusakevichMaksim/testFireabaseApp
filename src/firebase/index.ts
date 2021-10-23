@@ -1,5 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore, collection, getDoc, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -19,7 +23,6 @@ export const auth = getAuth(firebase);
 // const snapshot = getDocs(todosCol);
 
 export const handleOnAuthStateChanged = () => {
-  console.log(process.env.REACT_APP_FIREBASE_API_KEY);
   onAuthStateChanged(auth, (user) => {
     if (user !== null) {
       console.log(user, "logged in !");
@@ -27,4 +30,14 @@ export const handleOnAuthStateChanged = () => {
       console.log(user, "No user!");
     }
   });
+};
+
+export const handleCreateUserWithEmailAndPassword = (data: any) => {
+  createUserWithEmailAndPassword(auth, data.login, data.password)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
