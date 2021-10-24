@@ -7,7 +7,14 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { getFirestore, collection, getDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDoc,
+  doc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -23,9 +30,23 @@ export const firebase = initializeApp(firebaseConfig);
 export const auth = getAuth(firebase);
 const provider = new GoogleAuthProvider();
 
-// const db = getFirestore(app);
-// const todosCol = collection(db, "todos");
-// const snapshot = getDocs(todosCol);
+const db = getFirestore(firebase);
+
+export const handleGetCollection = async (name: string) => {
+  return await getDocs(collection(db, name));
+};
+
+export const handleSetCollection = (
+  colName: string,
+  docName: string,
+  data: any
+) => {
+  const todoRef = collection(db, colName);
+
+  setDoc(doc(todoRef, docName), data).then((e) => {
+    console.log("completed");
+  });
+};
 
 export const handleOnAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, (user) => {
