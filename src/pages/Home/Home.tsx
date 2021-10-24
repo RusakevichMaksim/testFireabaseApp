@@ -11,11 +11,7 @@ export const Home = () => {
     async function fetchData() {
       try {
         const doc = await handleGetCollection("test1");
-        // console.log("Cached document data:", doc.docs);
         setListData(doc.docs);
-        // doc.docs.map((e) => {
-        //   console.log(e.data());
-        // });
       } catch (e) {
         console.log("Error getting cached document:", e);
       }
@@ -28,7 +24,7 @@ export const Home = () => {
   };
 
   const handleSet = () => {
-    handleSetCollection("test1", "test1", data);
+    handleSetCollection("test1", data.data1, data);
   };
 
   return (
@@ -51,9 +47,9 @@ export const Home = () => {
         <button onClick={handleSet}>set</button>
       </Box>
       <ul>
-        {listData?.map((e: any) => {
+        {listData?.map((e: any, index: number) => {
           return (
-            <li>
+            <li key={index}>
               <div>{e.data().data1}</div>
               <div>{e.data().data2}</div>
             </li>
