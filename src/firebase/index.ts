@@ -36,14 +36,18 @@ export const handleGetCollection = async (name: string) => {
   return await getDocs(collection(db, name));
 };
 
-export const handleSetCollection = (
+export const handleGetDocument = async (name: string, id: string) => {
+  return await getDoc(doc(db, name, id));
+};
+
+export const handleSetCollection = async (
   colName: string,
   docName: string,
   data: any
 ) => {
   const todoRef = collection(db, colName);
 
-  setDoc(doc(todoRef, docName), data).then((e) => {
+  return await setDoc(doc(todoRef, docName), data).then((e) => {
     console.log("completed");
   });
 };

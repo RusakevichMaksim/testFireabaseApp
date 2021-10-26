@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Box } from "@material-ui/core";
 import useStyles from "./styles";
 import Button from "@material-ui/core/Button";

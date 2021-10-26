@@ -1,2 +1,4 @@
-export * from "./Layout/Layout";
-export * from "./Header/Header";
+export * from "./layout/Layout";
+export * from "./header/Header";
+export * from "./home-form-card/home-form-card";
+export * from "./home-card/home-card";
