@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { ROUTES } from "../constant";
-import { Home, NotFound, PageTwo, Login } from "../pages";
+import { Home, NotFound, PageTwo, Login, EditCard } from "../pages";
 import { useAuthContext } from "./AuthContext";
 
 export const RouterContext = React.createContext({});
@@ -10,6 +10,7 @@ const routes = [
   { path: ROUTES.home, component: Home, exact: true },
   { path: ROUTES.pageTwo, component: PageTwo, exact: true },
   { path: ROUTES.login, component: Login, exact: true },
+  { path: ROUTES.editCard + ":id", component: EditCard, exact: true },
 ];
 
 export const useShoppingCartContext = () => {
