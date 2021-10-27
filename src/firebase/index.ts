@@ -83,7 +83,7 @@ const storage = getStorage();
 // 'file' comes from the Blob or File API
 
 export const handleUploadFile = async (file: any) => {
-  const storageRef = ref(storage, file.name);
+  const storageRef = ref(storage, file.name + randomIntFromInterval(1, 99999));
 
   return uploadBytes(storageRef, file).then(() => {
     return getDownloadURL(ref(storage, file.name)).then((e) => {
@@ -91,3 +91,6 @@ export const handleUploadFile = async (file: any) => {
     });
   });
 };
+function randomIntFromInterval(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
