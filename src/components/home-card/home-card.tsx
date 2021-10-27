@@ -14,10 +14,18 @@ export const HomeCard = ({ listData }: Props) => {
   return (
     <div className={classes.wrapper}>
       {listData?.map((e: any, index: number) => {
+        const data = e.data();
         return (
           <div className={classes.warrerCard} key={index}>
-            <div className={classes.line}>{e.data().data1}</div>
-            <div className={classes.line}>{e.data().data2}</div>
+            {data.imgPath ? (
+              <img
+                className={classes.image}
+                alt="img"
+                src={`${data.imgPath}`}
+              />
+            ) : null}
+            <div className={classes.line}>{data.data1}</div>
+            <div className={classes.line}>{data.data2}</div>
             <Button
               onClick={() => {
                 history.push(ROUTES.editCard + e.id);

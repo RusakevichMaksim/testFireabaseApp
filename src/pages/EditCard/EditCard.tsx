@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Layout } from "../../components";
+import { Layout, Dropzone } from "../../components";
 import { Box, TextField, Button } from "@material-ui/core";
 import { handleSetCollection, handleGetDocument } from "../../firebase/index";
 import { useEffect, useState } from "react";
@@ -8,10 +8,11 @@ import { useHistory } from "react-router";
 
 export const EditCard = () => {
   const { id } = useParams<{ id: string }>();
-  const [data, setData] = useState({ data1: "", data2: "" });
+  const [data, setData] = useState({ data1: "", data2: "", imgPath: "" });
   const history = useHistory();
 
   const handleData = (name: string, value: string) => {
+    console.log(value);
     setData((prevstate) => ({ ...prevstate, [name]: value }));
   };
   const handleSet = () => {
@@ -26,6 +27,7 @@ export const EditCard = () => {
     });
   }, []);
 
+  console.log(data);
   return (
     <Layout>
       <Box
@@ -40,6 +42,9 @@ export const EditCard = () => {
         <Box
           style={{ display: "flex", flexDirection: "column", width: "250px" }}
         >
+          <img alt="img" src={`${data.imgPath}`} />
+
+          <Dropzone handleData={handleData} />
           <TextField
             onChange={(e) => {
               handleData("data1", e.target.value);
