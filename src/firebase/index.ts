@@ -15,6 +15,7 @@ import {
   doc,
   getDocs,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -28,11 +29,10 @@ const firebaseConfig = {
 };
 
 export const firebase = initializeApp(firebaseConfig);
-
 export const auth = getAuth(firebase);
-const provider = new GoogleAuthProvider();
-
-const db = getFirestore(firebase);
+export const provider = new GoogleAuthProvider();
+export const db = getFirestore(firebase);
+export const storage = getStorage();
 
 export const handleGetCollection = async (name: string) => {
   return await getDocs(collection(db, name));
@@ -78,19 +78,28 @@ export const handleSignInWithPopup = () => {
   signInWithPopup(auth, provider);
 };
 
-const storage = getStorage();
-
-// 'file' comes from the Blob or File API
-
 export const handleUploadFile = async (file: any) => {
-  const storageRef = ref(storage, file.name + randomIntFromInterval(1, 99999));
+  function randomIntFromInterval(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  let filename = file.name + randomIntFromInterval(1, 99999);
 
-  return uploadBytes(storageRef, file).then(() => {
-    return getDownloadURL(ref(storage, file.name)).then((e) => {
-      return e;
+  const storageRef = ref(storage, filename);
+
+  return uploadBytes(storageRef, file)
+    .then(() => {
+      return getDownloadURL(ref(storage, filename)).then((e) => {
+        return e;
+      });
+    })
+    .catch((e) => {
+      console.log(e, "not url");
+    })
+    .catch((e) => {
+      console.log(e, "not upload");
     });
-  });
 };
-function randomIntFromInterval(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+
+export const handleDeleteDoc = async (colName: string, docName: string) => {
+  return await deleteDoc(doc(db, colName, docName));
+};

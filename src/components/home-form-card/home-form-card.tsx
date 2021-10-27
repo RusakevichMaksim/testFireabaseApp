@@ -30,11 +30,13 @@ export const HomeFormCard = ({ fetchData, listData }: Props) => {
   }, [data]);
 
   const handleSet = () => {
-    handleSetCollection(document.home, `${listData.length + 1}`, data).then(
-      () => {
-        fetchData();
-      }
-    );
+    handleSetCollection(
+      document.home,
+      `${listData.length + 1}+${data.data1}`,
+      data
+    ).then(() => {
+      fetchData();
+    });
   };
 
   return (
@@ -73,7 +75,7 @@ export const HomeFormCard = ({ fetchData, listData }: Props) => {
       </Box>
       <FormControlLabel
         control={<Switch checked={checked} onChange={handleChange} />}
-        label="Show"
+        label="Show add card"
       />
     </Box>
   );
