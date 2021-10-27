@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { height } from "@mui/system";
 
 export default makeStyles({
   wrapper: {
@@ -8,7 +9,7 @@ export default makeStyles({
   warrerCard: {
     display: "flex",
     width: "200px",
-    height: "80px",
+    height: "300px",
     border: "1px solid black",
     margin: "10px",
     justifyContent: "center",
@@ -23,5 +24,9 @@ export default makeStyles({
   button: {
     backgroundColor: "white",
     marginTop: "10px",
+  },
+  image: {
+    minWidth: "200px",
+    minHeight: "200px",
   },
 });

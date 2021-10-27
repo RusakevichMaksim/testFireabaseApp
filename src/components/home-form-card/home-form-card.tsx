@@ -43,7 +43,7 @@ export const HomeFormCard = ({ fetchData, listData }: Props) => {
         style={{ display: checked ? "" : "none" }}
         className={classes.wrapper}
       >
-        <img src={`${data.imgPath}`} />
+        <img alt="img" src={`${data.imgPath}`} />
         <Dropzone handleData={handleData} />
         <TextField
           onChange={(e) => {

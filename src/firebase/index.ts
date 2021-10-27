@@ -85,12 +85,9 @@ const storage = getStorage();
 export const handleUploadFile = async (file: any) => {
   const storageRef = ref(storage, file.name);
 
-  let snapshot;
-  try {
-    snapshot = await getDownloadURL(ref(storage, file.name));
-  } catch {
-    snapshot = "";
-  } finally {
-  }
-  return snapshot;
+  return uploadBytes(storageRef, file).then(() => {
+    return getDownloadURL(ref(storage, file.name)).then((e) => {
+      return e;
+    });
+  });
 };
