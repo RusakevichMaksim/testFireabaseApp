@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Layout, Dropzone } from "../../components";
 import { Box, TextField, Button } from "@material-ui/core";
-import { handleSetCollection, handleGetDocument } from "../../firebase/index";
+import {
+  handleSetCollection,
+  handleGetDocument,
+  handleDeleteDoc,
+} from "../../firebase/index";
 import { useEffect, useState } from "react";
 import { document, ROUTES } from "../../constant/index";
 import { useHistory } from "react-router";
@@ -12,11 +16,15 @@ export const EditCard = () => {
   const history = useHistory();
 
   const handleData = (name: string, value: string) => {
-    console.log(value);
     setData((prevstate) => ({ ...prevstate, [name]: value }));
   };
   const handleSet = () => {
     handleSetCollection(document.home, `${id}`, data).then(() => {
+      history.push(ROUTES.home);
+    });
+  };
+  const handleDelete = () => {
+    handleDeleteDoc(document.home, `${id}`).then(() => {
       history.push(ROUTES.home);
     });
   };
@@ -72,6 +80,16 @@ export const EditCard = () => {
             onClick={handleSet}
           >
             set
+          </Button>
+          <Button
+            style={{
+              backgroundColor: "red",
+              color: "white",
+              marginTop: "10px",
+            }}
+            onClick={handleDelete}
+          >
+            delete
           </Button>
         </Box>{" "}
       </Box>
