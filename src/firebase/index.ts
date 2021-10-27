@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -7,7 +8,16 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { getFirestore, collection, getDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDoc,
+  doc,
+  getDocs,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -19,13 +29,30 @@ const firebaseConfig = {
 };
 
 export const firebase = initializeApp(firebaseConfig);
-
 export const auth = getAuth(firebase);
-const provider = new GoogleAuthProvider();
+export const provider = new GoogleAuthProvider();
+export const db = getFirestore(firebase);
+export const storage = getStorage();
 
-// const db = getFirestore(app);
-// const todosCol = collection(db, "todos");
-// const snapshot = getDocs(todosCol);
+export const handleGetCollection = async (name: string) => {
+  return await getDocs(collection(db, name));
+};
+
+export const handleGetDocument = async (name: string, id: string) => {
+  return await getDoc(doc(db, name, id));
+};
+
+export const handleSetCollection = async (
+  colName: string,
+  docName: string,
+  data: any
+) => {
+  const todoRef = collection(db, colName);
+
+  return await setDoc(doc(todoRef, docName), data).then((e) => {
+    console.log("completed");
+  });
+};
 
 export const handleOnAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, (user) => {
@@ -41,37 +68,38 @@ export const handleOnAuthStateChanged = (callback: any) => {
 
 export const handleSignInWithEmailAndPassword = (data: any) => {
   signInWithEmailAndPassword(auth, data.login, data.password);
-  // .then((userCredential) => {
-  //   console.log(userCredential.user);
-  // })
-  // .catch((error) => {
-  //   console.log(error.code, error.message);
-  // });
 };
 
 export const handleCreateUserWithEmailAndPassword = (data: any) => {
   createUserWithEmailAndPassword(auth, data.login, data.password);
-  // .then((response) => {
-  //   console.log(response);
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
 };
 
 export const handleSignInWithPopup = () => {
   signInWithPopup(auth, provider);
-  // .then((result) => {
-  //   const credential = GoogleAuthProvider.credentialFromResult(result);
-  //   const token = credential?.accessToken;
-  //   const user = result.user;
-  //   // ...
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   const email = error.email;
-  //   const credential = GoogleAuthProvider.credentialFromError(error);
-  //   // ...
-  // });
+};
+
+export const handleUploadFile = async (file: any) => {
+  function randomIntFromInterval(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  let filename = file.name + randomIntFromInterval(1, 99999);
+
+  const storageRef = ref(storage, filename);
+
+  return uploadBytes(storageRef, file)
+    .then(() => {
+      return getDownloadURL(ref(storage, filename)).then((e) => {
+        return e;
+      });
+    })
+    .catch((e) => {
+      console.log(e, "not url");
+    })
+    .catch((e) => {
+      console.log(e, "not upload");
+    });
+};
+
+export const handleDeleteDoc = async (colName: string, docName: string) => {
+  return await deleteDoc(doc(db, colName, docName));
 };

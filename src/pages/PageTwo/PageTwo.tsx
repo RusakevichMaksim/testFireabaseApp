@@ -1,19 +1,5 @@
-import { useHistory } from "react-router";
-import { ROUTES } from "../../constant";
+import { Layout } from "../../components";
 
 export const PageTwo = () => {
-  const history = useHistory();
-
-  return (
-    <div>
-      PageTwo
-      <button
-        onClick={() => {
-          history.push(ROUTES.home);
-        }}
-      >
-        go Home
-      </button>
-    </div>
-  );
+  return <Layout>PageTwo</Layout>;
 };
