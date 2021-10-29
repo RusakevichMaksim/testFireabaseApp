@@ -67,11 +67,15 @@ export const handleOnAuthStateChanged = (callback: any) => {
 };
 
 export const handleSignInWithEmailAndPassword = (data: any) => {
-  signInWithEmailAndPassword(auth, data.login, data.password);
+  signInWithEmailAndPassword(auth, data.login, data.password).catch((e) => {
+    console.log(e);
+  });
 };
 
 export const handleCreateUserWithEmailAndPassword = (data: any) => {
-  createUserWithEmailAndPassword(auth, data.login, data.password);
+  createUserWithEmailAndPassword(auth, data.login, data.password).catch((e) => {
+    console.log(e);
+  });
 };
 
 export const handleSignInWithPopup = () => {
