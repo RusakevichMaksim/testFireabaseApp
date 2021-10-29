@@ -5,6 +5,9 @@ export default makeStyles({
     cursor: "pointer",
     display: "flex",
   },
+  wrapperDefault: {
+    cursor: "pointer",
+  },
   input: {
     width: "400px",
     height: "52px",

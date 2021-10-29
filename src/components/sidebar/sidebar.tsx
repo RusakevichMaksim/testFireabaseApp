@@ -3,30 +3,52 @@ import { Box } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router";
 import { ROUTES } from "../../constant";
+import icon from "../../assets/mdi_toc.svg";
+import { useState } from "react";
 
 export const Sidebar = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [onen, setOpen] = useState(true);
 
   return (
     <div className={classes.wrapperOuter}>
-      <Box>
-        <Button
+      <div className={classes.wrapperInner}>
+        <div
           onClick={() => {
-            history.push(ROUTES.home);
+            setOpen(!onen);
           }}
+          className={classes.lineHead}
         >
-          Home
-        </Button>
-
-        <Button
-          onClick={() => {
-            history.push(ROUTES.pageTwo);
-          }}
-        >
-          Page Two
-        </Button>
-      </Box>
+          <img src={icon} alt="icon" />
+          <span className={classes.lineText}>CATEGORIES</span>
+        </div>
+        {onen ? (
+          <>
+            <div
+              onClick={() => {
+                history.push(ROUTES.home);
+              }}
+              className={classes.line}
+            >
+              Home
+            </div>
+            <div
+              onClick={() => {
+                history.push(ROUTES.pageTwo);
+              }}
+              className={classes.line}
+            >
+              Page Two
+            </div>
+            <div className={classes.line}>temp</div>
+            <div className={classes.line}>temp</div>
+            <div className={classes.line}>temp</div>
+            <div className={classes.line}>temp</div>
+            <div className={classes.line}>temp</div>
+          </>
+        ) : null}
+      </div>
     </div>
   );
 };

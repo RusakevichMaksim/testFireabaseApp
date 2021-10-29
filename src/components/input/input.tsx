@@ -50,7 +50,7 @@ export const Input = ({
 
       default:
         return (
-          <div style={style} className={classes.wrapperInput}>
+          <div style={style} className={classes.wrapperDefault}>
             <div className={classes.label}>{label}</div>
             <input
               placeholder={placeholder}
