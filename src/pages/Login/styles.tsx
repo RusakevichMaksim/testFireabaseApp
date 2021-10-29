@@ -1,23 +1,38 @@
+/* eslint-disable no-useless-computed-key */
 import { makeStyles } from "@material-ui/core/styles";
 
 const letf = 55;
+
+const enpd1024 = "1024px";
 
 export default makeStyles({
   wrapperOuter: {
     display: "flex",
     height: "100vh",
+    [`@media (max-width:${enpd1024})`]: {
+      flexWrap: "wrap",
+    },
   },
   wrapperInner: {
     display: "flex",
     width: `${letf}%`,
+
     justifyContent: "center",
     // alignItems: "center",
     flexDirection: "column",
     marginLeft: "100px",
+    [`@media (max-width:${enpd1024})`]: {
+      width: "100%",
+      marginLeft: "0px",
+      alignItems: "center",
+    },
   },
   wrapperInnerLeft: {
     display: "flex",
     width: `${100 - letf}%`,
+    [`@media (max-width:${enpd1024})`]: {
+      width: "100%",
+    },
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
@@ -43,6 +58,10 @@ export default makeStyles({
   },
   buttonWrapper: {
     marginTop: "50px",
+    [`@media (max-width:${enpd1024})`]: {
+      marginTop: "10px",
+    },
+    marginBottom: "10px",
     display: "flex",
     flexDirection: "column",
   },
