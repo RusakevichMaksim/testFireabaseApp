@@ -5,7 +5,7 @@ import useStyles from "./styles";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { document } from "../../constant";
-import { Dropzone } from "../dropzone/Dropzone";
+import { Dropzone } from "../dropzone/dropzone";
 
 type Props = {
   fetchData: () => {};

@@ -1,4 +1,4 @@
-import { Layout, HomeFormCard, HomeCard } from "../../components";
+import { Layout, HomeFormCard, HomeCard } from "../../components/index";
 import { useFetchData } from "../../hooks/useFetshData";
 
 export const Home = () => {
