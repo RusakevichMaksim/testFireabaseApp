@@ -1,7 +1,7 @@
 import { Box, Container } from "@material-ui/core";
 
 import useStyles from "./styles";
-import { Header } from "../index";
+import { Header, Sidebar } from "../index";
 
 type Props = {
   children: any;
@@ -10,13 +10,14 @@ type Props = {
 export const Layout = ({ children }: Props) => {
   const classes = useStyles();
   return (
-    <Container>
+    <div>
       <Header />
-      <Box display="flex" flexDirection="row">
+      <div style={{ display: "flex" }}>
+        <Sidebar />
         <main className={classes.main}>
           <Container>{children}</Container>
         </main>
-      </Box>
-    </Container>
+      </div>
+    </div>
   );
 };

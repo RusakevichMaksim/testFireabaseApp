@@ -12,4 +12,16 @@ export default makeStyles({
     lineHeight: "20px",
     color: "#FFFFFF",
   },
+  singOut: {
+    background: "#446b85",
+    width: "90px",
+    height: "52px",
+    border: "none",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: "16px",
+    lineHeight: "20px",
+    color: "#FFFFFF",
+    borderRadius: "15px",
+  },
 });
