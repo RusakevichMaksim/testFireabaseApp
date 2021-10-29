@@ -1,9 +1,10 @@
 import { Box } from "@material-ui/core";
 import useStyles from "./styles";
-import Button from "@material-ui/core/Button";
 import { ROUTES } from "../../constant";
 import { auth } from "../../firebase";
 import { useHistory } from "react-router";
+import { Input, Button } from "../index";
+import avatar from "../../assets/login-img/User.jpg";
 
 export const Header = () => {
   const classes = useStyles();
@@ -11,31 +12,21 @@ export const Header = () => {
 
   return (
     <header className={classes.header}>
-      <Box>
-        <Button
-          onClick={() => {
-            history.push(ROUTES.home);
-          }}
-        >
-          Home
-        </Button>
+      <div className={classes.logo}>GStore</div>
+      <div className={classes.headerWrapperInner}>
+        <Input typeInput="search" placeholder="Search" onChange={() => {}} />
+        <div className={classes.avatarWrapper}>
+          <Button
+            onClick={() => {
+              auth.signOut();
+            }}
+            text="Sing Out"
+            typeButton="singOut"
+          />
 
-        <Button
-          onClick={() => {
-            history.push(ROUTES.pageTwo);
-          }}
-        >
-          Page Two
-        </Button>
-      </Box>
-
-      <Button
-        onClick={() => {
-          auth.signOut();
-        }}
-      >
-        Sing Out
-      </Button>
+          <img className={classes.avatar} src={avatar} alt="Avatar" />
+        </div>
+      </div>
     </header>
   );
 };

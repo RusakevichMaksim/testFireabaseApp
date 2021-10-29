@@ -5,3 +5,4 @@ export * from "./home-card/home-card";
 export * from "./dropzone/dropzone";
 export * from "./input/input";
 export * from "./button/button";
+export * from "./sidebar/sidebar";
