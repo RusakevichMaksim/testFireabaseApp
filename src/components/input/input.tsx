@@ -8,6 +8,7 @@ type Props = {
   label?: string;
   style?: any;
   typeInput?: string;
+  disabled?: boolean;
 };
 
 export const Input = ({
@@ -17,6 +18,7 @@ export const Input = ({
   label,
   style,
   typeInput,
+  disabled,
 }: Props) => {
   const classes = useStyles();
 
@@ -31,6 +33,7 @@ export const Input = ({
               className={classes.input}
               value={value}
               onChange={onChange}
+              disabled={disabled}
             />
           </div>
         );
@@ -44,6 +47,7 @@ export const Input = ({
               className={classes.inputSearch}
               value={value}
               onChange={onChange}
+              disabled={disabled}
             />
           </div>
         );
@@ -57,6 +61,7 @@ export const Input = ({
               className={classes.input}
               value={value}
               onChange={onChange}
+              disabled={disabled}
             />
           </div>
         );

@@ -21,7 +21,7 @@ export const Sidebar = () => {
           className={classes.lineHead}
         >
           <img src={icon} alt="icon" />
-          <span className={classes.lineText}>CATEGORIES</span>
+          <span className={classes.lineText}>Pages</span>
         </div>
         {onen ? (
           <>

@@ -11,6 +11,9 @@ export default makeStyles({
     fontSize: "16px",
     lineHeight: "20px",
     color: "#FFFFFF",
+    "&:active": {
+      background: "#494050",
+    },
   },
   singOut: {
     background: "#446b85",
@@ -23,5 +26,8 @@ export default makeStyles({
     lineHeight: "20px",
     color: "#FFFFFF",
     borderRadius: "15px",
+    "&:active": {
+      background: "#6446b85",
+    },
   },
 });

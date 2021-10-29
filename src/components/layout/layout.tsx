@@ -14,9 +14,7 @@ export const Layout = ({ children }: Props) => {
       <Header />
       <div style={{ display: "flex" }}>
         <Sidebar />
-        <main className={classes.main}>
-          <Container>{children}</Container>
-        </main>
+        <main className={classes.main}>{children}</main>
       </div>
     </div>
   );

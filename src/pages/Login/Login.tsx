@@ -43,6 +43,7 @@ export const Login = () => {
           }}
           placeholder="Email"
           label="Email"
+          disabled={true}
         />
         <Input
           value={userData.password}
@@ -52,6 +53,7 @@ export const Login = () => {
           placeholder="Password"
           label="Password"
           style={{ marginTop: "30px" }}
+          disabled={true}
         />
         <div className={classes.buttonWrapper}>
           <Button

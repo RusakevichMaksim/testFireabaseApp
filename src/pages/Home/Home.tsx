@@ -6,7 +6,7 @@ export const Home = () => {
 
   return (
     <Layout>
-      <HomeFormCard fetchData={fetchData} listData={listData} />
+      {/* <HomeFormCard fetchData={fetchData} listData={listData} /> */}
       <HomeCard listData={listData} />
     </Layout>
   );
