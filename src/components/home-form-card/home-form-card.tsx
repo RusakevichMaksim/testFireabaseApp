@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Box, TextField, Button } from "@material-ui/core";
 import { handleSetCollection, handleUploadFile } from "../../firebase";
 import useStyles from "./styles";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import { ROUTES } from "../../constant";
+
 import { document } from "../../constant";
 import { Dropzone } from "../dropzone/dropzone";
+import { useHistory } from "react-router";
 
 type Props = {
   fetchData: () => {};
@@ -14,11 +15,8 @@ type Props = {
 
 export const HomeFormCard = ({ fetchData, listData }: Props) => {
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
+  const history = useHistory();
 
-  const handleChange = () => {
-    setChecked((prev) => !prev);
-  };
   const [data, setData] = useState({ data1: "", data2: "", imgPath: "" });
 
   const handleData = (name: string, value: string) => {
@@ -35,16 +33,13 @@ export const HomeFormCard = ({ fetchData, listData }: Props) => {
       `${listData.length + 1}+${data.data1}`,
       data
     ).then(() => {
-      fetchData();
+      history.push(ROUTES.home);
     });
   };
 
   return (
     <Box>
-      <Box
-        style={{ display: checked ? "" : "none" }}
-        className={classes.wrapper}
-      >
+      <Box className={classes.wrapper}>
         <img alt="img" src={`${data.imgPath}`} />
         <Dropzone handleData={handleData} />
         <TextField
@@ -73,10 +68,6 @@ export const HomeFormCard = ({ fetchData, listData }: Props) => {
           add card
         </Button>
       </Box>
-      <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
-        label="Show add card"
-      />
     </Box>
   );
 };

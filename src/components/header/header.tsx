@@ -1,14 +1,10 @@
-import { Box } from "@material-ui/core";
 import useStyles from "./styles";
-import { ROUTES } from "../../constant";
 import { auth } from "../../firebase";
-import { useHistory } from "react-router";
 import { Input, Button } from "../index";
 import avatar from "../../assets/login-img/User.jpg";
 
 export const Header = () => {
   const classes = useStyles();
-  const history = useHistory();
 
   return (
     <header className={classes.header}>

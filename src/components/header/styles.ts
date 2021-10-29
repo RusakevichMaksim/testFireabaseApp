@@ -18,7 +18,7 @@ export default makeStyles({
     paddingLeft: "50px",
   },
   headerWrapperInner: {
-    width: `calc(100% - 277px)`,
+    width: "100%",
     display: "flex",
     justifyContent: "space-between",
   },

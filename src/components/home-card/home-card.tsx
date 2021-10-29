@@ -24,16 +24,18 @@ export const HomeCard = ({ listData }: Props) => {
                 src={`${data.imgPath}`}
               />
             ) : null}
-            <div className={classes.line}>{data.data1}</div>
-            <div className={classes.line}>{data.data2}</div>
-            <Button
-              onClick={() => {
-                history.push(ROUTES.editCard + e.id);
-              }}
-              className={classes.button}
-            >
-              Edit
-            </Button>
+            <div className={classes.cardContent}>
+              <div className={classes.lineHead}>{data.data1}</div>
+              <div className={classes.line}>{data.data2}</div>
+              <Button
+                onClick={() => {
+                  history.push(ROUTES.editCard + e.id);
+                }}
+                className={classes.button}
+              >
+                Edit
+              </Button>
+            </div>
           </div>
         );
       })}

@@ -35,7 +35,6 @@ export const EditCard = () => {
     });
   }, []);
 
-  console.log(data);
   return (
     <Layout>
       <Box

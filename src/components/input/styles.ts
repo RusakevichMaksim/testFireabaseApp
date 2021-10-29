@@ -46,7 +46,7 @@ export default makeStyles({
     paddingLeft: "60px",
   },
   search: {
-    position: "fixed",
+    position: "absolute",
     marginLeft: "17px",
     marginTop: "14px",
   },

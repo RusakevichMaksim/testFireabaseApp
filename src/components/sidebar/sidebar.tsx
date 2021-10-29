@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router";
 import { ROUTES } from "../../constant";
 import icon from "../../assets/mdi_toc.svg";
+import add from "../../assets/mdi_add.svg";
+
 import { useState } from "react";
 
 export const Sidebar = () => {
@@ -48,6 +50,16 @@ export const Sidebar = () => {
             <div className={classes.line}>temp</div>
           </>
         ) : null}
+        <div
+          onClick={() => {
+            history.push(ROUTES.addCard);
+          }}
+          className={classes.lineHead}
+          style={{ marginTop: "15px" }}
+        >
+          <img src={add} alt="icon" />
+          <span className={classes.lineText}>ADD CARD</span>
+        </div>
       </div>
     </div>
   );

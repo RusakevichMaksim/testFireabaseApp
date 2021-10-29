@@ -3,4 +3,5 @@ export const ROUTES = {
   pageTwo: "/page-two",
   login: "/login",
   editCard: "/edit-card/",
+  addCard: "/add-card/",
 };

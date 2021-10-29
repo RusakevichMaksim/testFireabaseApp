@@ -79,7 +79,7 @@ export const handleCreateUserWithEmailAndPassword = (data: any) => {
 };
 
 export const handleSignInWithPopup = () => {
-  signInWithPopup(auth, provider);
+  signInWithPopup(auth, provider).catch((e) => console.log(e));
 };
 
 export const handleUploadFile = async (file: any) => {
